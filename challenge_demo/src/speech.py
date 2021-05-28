@@ -24,7 +24,7 @@ while not rospy.is_shutdown():
     print("next sentence:")
     print(Text[current_sentence])
 
-    cmd = raw_input("provide input\n")
+    cmd = input("provide input\n")
     cmd = str(cmd)
     print("you entered: {}".format(cmd))
     if cmd == 'a':
