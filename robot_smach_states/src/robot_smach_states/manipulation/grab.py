@@ -213,7 +213,7 @@ class PickUp(smach.State):
         if not arm.send_goal(goal_bl, timeout=20, allowed_touch_objects=[grab_entity.id]):
             rospy.logerr('Failed lift')
 
-        self.robot.grasp_detector.detect() # start detection for an object in the gripper
+        self.robot.grasp_detector.start_recording() # start recording torque data for object detection
 
         # Retract
         goal_bl = grasp_framestamped.projectToFrame(self.robot.base_link_frame,
