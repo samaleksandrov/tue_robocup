@@ -11,7 +11,6 @@ from robot_skills.robot import Robot
 from robot_skills.util.kdl_conversions import VectorStamped
 from robot_skills.util.entity import Entity
 from robot_skills.arm.arms import PublicArm, GripperTypes
-from robot_skills.arm.grasp_detector import GraspDetector
 from ..utility import check_arm_requirements, ResolveArm
 from ..util.designators import check_type
 from ..navigation.navigate_to_grasp import NavigateToGrasp
@@ -241,7 +240,7 @@ class PickUp(smach.State):
         arm.send_joint_goal('carrying_pose', timeout=0.0)
 
         # Object detection in the gripper
-        if not self.robot.grasp_detector.detect():
+        if not self.robot.arm.grasp_detector.detect():
             rospy.logerr('Gripper not holding an object')
             result = "failed"
         else:
